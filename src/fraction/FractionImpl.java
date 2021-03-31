@@ -1,43 +1,46 @@
 package fraction;
 
+
+
 public class FractionImpl implements Fraction {
-    /**
-     * Parameters are the <em>numerator</em> and the <em>denominator</em>.
-     * Normalize the fraction as you create it.
-     * For instance, if the parameters are <pre>(8, -12)</pre>, create a <pre>Fraction</pre> with numerator
-     * <pre>-2</pre> and denominator <pre>3</pre>.
-     *
-     * The constructor should throw an <pre>ArithmeticException</pre> if the denominator is zero.
-     *
-     * @param numerator
-     * @param denominator
-     */
+
+    private int numerator;
+    private int denominator;
+
+
     public FractionImpl(int numerator, int denominator) {
-        // TODO
+        int checksign=1;
+        if(numerator<0) {
+            checksign *= -1;
+            numerator *= -1;
+        }
+        if(denominator<0) {
+            checksign *= -1;
+            denominator *= -1;
+        }
+        if (denominator==0)  throw new ArithmeticException("divide by zero!");
+
+        int GCD_value = GCD(numerator, denominator);
+        this.numerator=(numerator*checksign)/GCD_value;
+        this.denominator=denominator/GCD_value;
+
     }
 
-    /**
-     * The parameter is the numerator and <pre>1</pre> is the implicit denominator.
-     *
-     * @param wholeNumber representing the numerator
-     */
+
+
     public FractionImpl(int wholeNumber) {
-        // TODO
+
+
+
     }
 
-    /**
-     * The parameter is a <pre>String</pre> containing either a whole number, such as `5` or `-3`, or a fraction,
-     * such as "8/-12".
-     * Allow blanks around (but not within) integers.
-     * The constructor should throw an <pre>ArithmeticException</pre>
-     * if given a string representing a fraction whose denominator is zero.
-     * <p>
-     * You may find it helpful to look at the available String API methods in the Java API.
-     *
-     * @param fraction the string representation of the fraction
-     */
+
     public FractionImpl(String fraction) {
         // TODO
+    }
+
+    public int GCD(int nume, int denom) {
+        return denom==0 ? nume : GCD(denom, nume%denom);
     }
 
     /**
@@ -132,7 +135,18 @@ public class FractionImpl implements Fraction {
      * @inheritDoc
      */
     @Override
+
     public String toString() {
         return null;
     }
+
+    public static void main(String[] args) {
+        FractionImpl test = new FractionImpl(8, 0);
+        System.out.println(test.numerator+" "+ test.denominator);
+
+    }
+
 }
+
+
+
