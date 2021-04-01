@@ -79,8 +79,7 @@ public class FractionImpl implements Fraction {
         // a/b + c/d = (ad + bc) / bd
         return new FractionImpl(
                 this.getNumerator() * thatf.getDenominator() + this.getDenominator() * thatf.getNumerator(),
-                this.getDenominator() * thatf.getDenominator()
-        );
+                this.getDenominator() * thatf.getDenominator());
     }
 
     /**
@@ -91,11 +90,10 @@ public class FractionImpl implements Fraction {
         FractionImpl thatf = (FractionImpl) f;
 
 
-        // a/b - c/d = (ad + bc) / bd
+        // a/b - c/d = (ad - bc) / bd
         return new FractionImpl(
                 this.getNumerator() * thatf.getDenominator() - this.getDenominator() * thatf.getNumerator(),
-                this.getDenominator() * thatf.getDenominator()
-        );
+                this.getDenominator() * thatf.getDenominator());
     }
 
     /**
@@ -103,15 +101,26 @@ public class FractionImpl implements Fraction {
      */
     @Override
     public Fraction multiply(Fraction f) {
-        return null;
+        FractionImpl thatf = (FractionImpl) f;
+
+
+        // (a/b) * (c/d) = (a*c)/(b*d)
+        return new FractionImpl(
+                this.getNumerator()*thatf.getNumerator(), this.getDenominator()*thatf.getDenominator());
     }
+
 
     /**
      * @inheritDoc
      */
     @Override
     public Fraction divide(Fraction f) {
-        return null;
+        FractionImpl thatf = (FractionImpl) f;
+
+
+        // (a/b) / (c/d) = (a*d)/(b*c)
+        return new FractionImpl(
+                this.getNumerator()*thatf.getDenominator(), this.getDenominator()*thatf.getNumerator());
     }
 
     /**
