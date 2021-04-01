@@ -8,7 +8,47 @@ public class FractionImpl implements Fraction {
     private int denominator;
 
 
+
     public FractionImpl(int numerator, int denominator) {
+        if (denominator==0)  throw new ArithmeticException("divide by zero!");
+        fractionValidator(numerator, denominator);
+    }
+
+    public FractionImpl(int wholeNumber) {
+        this.setNumerator(wholeNumber);
+        this.setDenominator(1);
+    }
+
+
+    public FractionImpl(String fraction) {
+        int x = fraction.indexOf("/");
+        String StringNumerator = fraction.substring(0, x).trim();
+        String StringDenominator = fraction.substring(x+1).trim();
+        int a = Integer.parseInt(StringNumerator);
+        int b = Integer.parseInt(StringDenominator);
+        if (b==0)  throw new ArithmeticException("divide by zero!");
+        fractionValidator(a, b);
+
+    }
+
+
+    public void setNumerator(int numerator) {
+        this.numerator = numerator;
+    }
+
+    public void setDenominator(int denominator) {
+        this.denominator = denominator;
+    }
+
+    public int getNumerator() {
+        return this.numerator;
+    }
+
+    private int getDenominator() {
+        return this.denominator;
+    }
+
+    private void fractionValidator (int numerator, int denominator){
         int checksign=1;
         if(numerator<0) {
             checksign *= -1;
@@ -18,28 +58,13 @@ public class FractionImpl implements Fraction {
             checksign *= -1;
             denominator *= -1;
         }
-        if (denominator==0)  throw new ArithmeticException("divide by zero!");
 
         int GCD_value = GCD(numerator, denominator);
-        this.numerator=(numerator*checksign)/GCD_value;
-        this.denominator=denominator/GCD_value;
-
+        this.setNumerator((numerator*checksign)/GCD_value);
+        this.setDenominator(denominator/GCD_value);
     }
 
-
-
-    public FractionImpl(int wholeNumber) {
-
-
-
-    }
-
-
-    public FractionImpl(String fraction) {
-        // TODO
-    }
-
-    public int GCD(int nume, int denom) {
+    private int GCD(int nume, int denom) {
         return denom==0 ? nume : GCD(denom, nume%denom);
     }
 
@@ -48,7 +73,14 @@ public class FractionImpl implements Fraction {
      */
     @Override
     public Fraction add(Fraction f) {
-        return null;
+        FractionImpl thatf = (FractionImpl) f;
+
+
+        // a/b + c/d = (ad + bc) / bd
+        return new FractionImpl(
+                this.getNumerator() * thatf.getDenominator() + this.getDenominator() * thatf.getNumerator(),
+                this.getDenominator() * thatf.getDenominator()
+        );
     }
 
     /**
@@ -56,7 +88,14 @@ public class FractionImpl implements Fraction {
      */
     @Override
     public Fraction subtract(Fraction f) {
-        return null;
+        FractionImpl thatf = (FractionImpl) f;
+
+
+        // a/b - c/d = (ad + bc) / bd
+        return new FractionImpl(
+                this.getNumerator() * thatf.getDenominator() - this.getDenominator() * thatf.getNumerator(),
+                this.getDenominator() * thatf.getDenominator()
+        );
     }
 
     /**
@@ -137,11 +176,15 @@ public class FractionImpl implements Fraction {
     @Override
 
     public String toString() {
-        return null;
+        return this.getDenominator() == 1? String.valueOf(this.getNumerator())
+                : this.getNumerator() + "/" + this.getDenominator();
     }
 
     public static void main(String[] args) {
-        FractionImpl test = new FractionImpl(8, 0);
+        FractionImpl test = new FractionImpl("7/1");
+        FractionImpl test2 = new FractionImpl("20/80");
+        System.out.println(test.add(test2).toString());
+
         System.out.println(test.numerator+" "+ test.denominator);
 
     }
