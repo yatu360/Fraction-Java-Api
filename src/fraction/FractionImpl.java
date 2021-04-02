@@ -128,7 +128,7 @@ public class FractionImpl implements Fraction {
      */
     @Override
     public Fraction abs() {
-        return null;
+        return new FractionImpl(Math.abs(this.getNumerator()), Math.abs(this.getDenominator()));
     }
 
     /**
@@ -136,7 +136,7 @@ public class FractionImpl implements Fraction {
      */
     @Override
     public Fraction negate() {
-        return null;
+        return new FractionImpl(this.getNumerator()*-1, this.getDenominator());
     }
 
     /**
@@ -152,7 +152,11 @@ public class FractionImpl implements Fraction {
      */
     @Override
     public boolean equals(Object obj) {
-        return super.equals(obj);
+        if (obj instanceof FractionImpl) {
+            FractionImpl f = (FractionImpl) obj;
+            return this.getNumerator() == f.getNumerator() && this.getDenominator() == f.getDenominator();
+        }
+        return false;
     }
 
     /**
@@ -168,7 +172,7 @@ public class FractionImpl implements Fraction {
      */
     @Override
     public Fraction inverse() {
-        return null;
+        return new FractionImpl(this.getDenominator(), this.getNumerator());
     }
 
     /**
@@ -176,7 +180,8 @@ public class FractionImpl implements Fraction {
      */
     @Override
     public int compareTo(Fraction o) {
-        return 0;
+        FractionImpl thato = (FractionImpl) o;
+        return ((this.getNumerator()* thato.getDenominator())-(thato.getNumerator()*this.getDenominator()));
     }
 
     /**
@@ -192,7 +197,7 @@ public class FractionImpl implements Fraction {
     public static void main(String[] args) {
         FractionImpl test = new FractionImpl("7/1");
         FractionImpl test2 = new FractionImpl("20/80");
-        System.out.println(test.add(test2).toString());
+        System.out.println(test.compareTo(test2));
 
         System.out.println(test.numerator+" "+ test.denominator);
 

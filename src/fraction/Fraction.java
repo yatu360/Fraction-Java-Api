@@ -1,5 +1,5 @@
 package fraction;
-
+import java.lang.Integer;
 /**
  * Representing fractions of the form numerator and denominator
  * The object should be immutable.
