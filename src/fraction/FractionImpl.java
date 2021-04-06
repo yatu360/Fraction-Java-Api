@@ -1,6 +1,7 @@
 package fraction;
 
 
+import java.util.Objects;
 
 public class FractionImpl implements Fraction {
 
@@ -32,15 +33,15 @@ public class FractionImpl implements Fraction {
     }
 
 
-    public void setNumerator(int numerator) {
+    private void setNumerator(int numerator) {
         this.numerator = numerator;
     }
 
-    public void setDenominator(int denominator) {
+    private void setDenominator(int denominator) {
         this.denominator = denominator;
     }
 
-    public int getNumerator() {
+    private int getNumerator() {
         return this.numerator;
     }
 
@@ -143,8 +144,8 @@ public class FractionImpl implements Fraction {
      * @inheritDoc
      */
     @Override
-    public int hashCode() {
-        return super.hashCode();
+    public int hashCode() { //IntelliJ generated hashCode method
+        return Objects.hash(this.getNumerator(), this.getDenominator());
     }
 
     /**
@@ -195,7 +196,7 @@ public class FractionImpl implements Fraction {
     }
 
     public static void main(String[] args) {
-        FractionImpl test = new FractionImpl("7/1");
+        FractionImpl test = new FractionImpl("7/0");
         FractionImpl test2 = new FractionImpl("20/80");
         System.out.println(test.compareTo(test2));
 
