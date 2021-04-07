@@ -13,7 +13,8 @@ public class FractionImplTest {
         String[][] testaddArray  = {{"2/1", "1/1", "1/1"},
                                     {"1/2", "1/4", "1/4"},
                                     {"79/180", "11/20", "9/-81"},
-                                    {"-1/4", "-50/75", "5/12"}
+                                    {"-1/4", "-50/75", "5/12"},
+                {}
         };
         for (String[] testadd: testaddArray) {
             Assert.assertEquals(new FractionImpl(testadd[0]), new FractionImpl(testadd[1]).add(new FractionImpl(testadd[2])));

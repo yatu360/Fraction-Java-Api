@@ -10,7 +10,7 @@ public class FractionImpl implements Fraction {
 
 
 
-    public FractionImpl(int numerator, int denominator) {
+    public FractionImpl(int numerator, int denominator)throws ArithmeticException{
         if (denominator==0)  throw new ArithmeticException("divide by zero!");
         fractionValidator(numerator, denominator);
     }
@@ -21,13 +21,20 @@ public class FractionImpl implements Fraction {
     }
 
 
-    public FractionImpl(String fraction) {
+    public FractionImpl(String fraction)throws ArithmeticException, StringIndexOutOfBoundsException, NumberFormatException {
         int x = fraction.indexOf("/");
-        String StringNumerator = fraction.substring(0, x).trim();
-        String StringDenominator = fraction.substring(x+1).trim();
+        String StringNumerator;
+        String StringDenominator;
+        try{
+            StringNumerator= fraction.substring(0, x).trim();
+            StringDenominator = fraction.substring(x + 1).trim();
+        } catch (StringIndexOutOfBoundsException e){
+            StringNumerator=fraction;
+            StringDenominator="1";
+        }
         int a = Integer.parseInt(StringNumerator);
         int b = Integer.parseInt(StringDenominator);
-        if (b==0)  throw new ArithmeticException("divide by zero!");
+        if (b == 0) throw new ArithmeticException("divide by zero!");
         fractionValidator(a, b);
 
     }
@@ -196,9 +203,9 @@ public class FractionImpl implements Fraction {
     }
 
     public static void main(String[] args) {
-        FractionImpl test = new FractionImpl("7/0");
-        FractionImpl test2 = new FractionImpl("20/80");
-        System.out.println(test.compareTo(test2));
+        FractionImpl test = new FractionImpl("78/0");
+        FractionImpl test2 = new FractionImpl("1/1");
+        System.out.println(test.add(test2));
 
         System.out.println(test.numerator+" "+ test.denominator);
 
