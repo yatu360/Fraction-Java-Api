@@ -204,8 +204,8 @@ public class FractionImpl implements Fraction {
     }
 
     public static void main(String[] args) {
-        FractionImpl test = new FractionImpl("/2");
-        FractionImpl test2 = new FractionImpl("-8/9");
+        FractionImpl test = new FractionImpl("3/-2");
+        FractionImpl test2 = new FractionImpl(2);
         System.out.println(test.add(test2).toString());
 
         System.out.println(test.numerator+" "+ test.denominator);
