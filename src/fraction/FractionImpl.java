@@ -21,7 +21,8 @@ public class FractionImpl implements Fraction {
     }
 
 
-    public FractionImpl(String fraction)throws ArithmeticException, StringIndexOutOfBoundsException, NumberFormatException {
+    public FractionImpl(String fraction)throws ArithmeticException, NumberFormatException {
+        if (!(fraction.matches("^((\s*?)(-?)[0-9]+)\s*?(/(\s*?)(-?)[0-9]+)?(\s*?)?"))) throw new NumberFormatException("Malformed fraction!");
         int x = fraction.indexOf("/");
         String StringNumerator;
         String StringDenominator;
@@ -203,9 +204,9 @@ public class FractionImpl implements Fraction {
     }
 
     public static void main(String[] args) {
-        FractionImpl test = new FractionImpl("78/0");
-        FractionImpl test2 = new FractionImpl("1/1");
-        System.out.println(test.add(test2));
+        FractionImpl test = new FractionImpl("/2");
+        FractionImpl test2 = new FractionImpl("-8/9");
+        System.out.println(test.add(test2).toString());
 
         System.out.println(test.numerator+" "+ test.denominator);
 
