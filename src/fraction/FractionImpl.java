@@ -22,7 +22,8 @@ public class FractionImpl implements Fraction {
 
 
     public FractionImpl(String fraction)throws ArithmeticException, NumberFormatException {
-        if (!(fraction.matches("^((\s*?)(-?)[0-9]+)\s*?(/(\s*?)(-?)[0-9]+)?(\s*?)?"))) throw new NumberFormatException("Malformed fraction!");
+        if (!(fraction.matches("^((\s*?)(-?)[0-9]+)\s*?(/(\s*?)(-?)[0-9]+)?(\s*?)?")))
+                                        throw new NumberFormatException("Malformed fraction! "+ fraction +" is not a valid fraction.");
         int x = fraction.indexOf("/");
         String StringNumerator;
         String StringDenominator;
@@ -204,7 +205,7 @@ public class FractionImpl implements Fraction {
     }
 
     public static void main(String[] args) {
-        FractionImpl test = new FractionImpl("3/-2");
+        FractionImpl test = new FractionImpl("3/");
         FractionImpl test2 = new FractionImpl(2);
         System.out.println(test.add(test2).toString());
 

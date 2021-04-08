@@ -54,6 +54,26 @@ public class FractionImplTest {
 
     @Test
     public void multiply() {
+        String[][] testmulArray  = {
+                {"1", "1/1", "1/1"},
+                {"-1/4", "1/4", "1/2"},
+                {"119/180", "11/20", "9/-81"},
+                {"-13/12", "-50/75", "5/12"},
+                {"21/1", "45/1", "24/1"},
+                {"1/5", "-45/125", "-14/25"},
+                {"-1", "0/1", "1"},
+                {"-7/2", "-3", "1/2"},
+                {"0", "0", "0"},
+                {"-100", "-50", "50"}
+
+
+        };
+        for (String[] test: testmulArray) {
+            Assert.assertEquals(new FractionImpl(test[0]), new FractionImpl(test[1]).subtract(new FractionImpl(test[2])));
+        }
+        System.out.println("All 10 test passed");
+
+
     }
 
     @Test
