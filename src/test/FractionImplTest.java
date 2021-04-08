@@ -114,16 +114,16 @@ public class FractionImplTest {
             @Test
     public void negate() {
                 String[][] testmulArray = {
-                        {"1", "1/1"},
-                        {"1/4", "1/4"},
-                        {"2", "2/1"},
-                        {"1/2", "1/2"},
+                        {"1", "-1/1"},
+                        {"-1/4", "1/4"},
+                        {"2", "2/-1"},
+                        {"-1/2", "1/2"},
                         {"111/1", "-111/1" },
 
 
                 };
                 for (String[] test : testmulArray) {
-                    Assert.assertEquals(new FractionImpl(test[0]), new FractionImpl(test[1]).abs());
+                    Assert.assertEquals(new FractionImpl(test[0]), new FractionImpl(test[1]).negate());
                 }
                 System.out.println("All 5 test passed");
 
@@ -131,15 +131,32 @@ public class FractionImplTest {
 
     @Test
     public void testHashCode() {
+        Assert.assertEquals((new FractionImpl("-1")).hashCode(), (new FractionImpl("-1/1")).hashCode());
+        Assert.assertEquals((new FractionImpl("1")).hashCode(), (new FractionImpl("1/1")).hashCode());
+        System.out.println("All tests passed");
     }
 
     @Test
     public void testEquals() {
+        String[][] testEqArray = {
+                {"1/1", "1/1"},
+                {"1/4", "-1/2"},
+                {"0/1", "0"},
+                {"-3", "-1/2"},
+                { "0", "0"},
+                };
+
+        Boolean [] test1 = {true, false, true, false, true};
+        int i = 0;
+        for (String[] test : testEqArray) {
+            Assert.assertEquals(test1[i], new FractionImpl(test[0]).equals(new FractionImpl(test[1])));
+            i++;
+
+        }
+        System.out.println("All 5 test passed");
+
     }
 
-    @Test
-    public void testClone() {
-    }
 
     @Test
     public void inverse() {
