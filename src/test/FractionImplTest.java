@@ -1,43 +1,43 @@
 package test;
 
 
-import fraction.Fraction;
 import org.junit.Test;
 import org.junit.Assert.*;
 import org.junit.*;
 import fraction.FractionImpl;
-
-import java.util.ArrayList;
-import java.util.concurrent.Callable;
-import org.hamcrest.CoreMatchers;
 
 
 
 public class FractionImplTest {
 
 
-    @Test(expected = NumberFormatException.class)
-    public void testNumberFormatException() {
+    @Test
+    public void testMalformedFractions() throws NumberFormatException {
         String [] invalidFractions = {"- 3/ 4", "2/", "/1", "4 4", "-3 4", "4 5/6 7", "1-2", "££", "1.04", "4/(3)"};
-        for (String error: invalidFractions){
-            FractionImpl test0= new FractionImpl(error);
-        }
-        System.out.println("All 10 tests passed");
-
-    }
-
-    @Test(expected = NumberFormatException.class)
-    public void testArithmeticException() {
-        String [] invalidFractions = {"- 3/ 4", "2/", "/1", "4 4", "-3 4", "4 5/6 7", "1-2", "££", "1.04", "4/(3)"};
-        for (String error: invalidFractions){
-            FractionImpl test0= new FractionImpl(error);
+        int i = 0;
+        while (i<10) {
+            try {
+                FractionImpl test0 = new FractionImpl(invalidFractions[i]);
+                Assert.fail("Test failed, not a malformed fractions");
+            } catch (NumberFormatException e) {
+                i++;
+            }
         }
         System.out.println("All 10 tests passed");
     }
+
+
+    @Test(expected = ArithmeticException.class)
+    public void testDivideByZero() {
+        FractionImpl test1= new FractionImpl(1, 0);
+    }
+
+
+
 
 
     @Test
-    public void testadd() {
+    public void testAdd() {
         String[][] testaddArray  = {{"2/1", "1/1", "1/1"},
                                     {"1/2", "1/4", "1/4"},
                                     {"79/180", "11/20", "9/-81"},
@@ -56,7 +56,7 @@ public class FractionImplTest {
     }
 
     @Test
-    public void testsubtract() {
+    public void testSubtract() {
         String[][] testsubArray  = {{"0", "1/1", "1/1"},
                                     {"-1/4", "1/4", "1/2"},
                                     {"119/180", "11/20", "9/-81"},
@@ -76,7 +76,7 @@ public class FractionImplTest {
 
 
     @Test
-    public void testmultiply() {
+    public void testMultiply() {
         String[][] testmulArray  = {
                 {"1", "1/1", "1/1"},
                 {"-1/8", "1/4", "-1/2"},
@@ -93,7 +93,7 @@ public class FractionImplTest {
     }
 
     @Test
-    public void testdivide() {
+    public void testDivide() {
         String[][] testmulArray  = {
                 {"1", "1/1", "1/1"},
                 {"-1/2", "1/4", "-1/2"},
@@ -114,7 +114,7 @@ public class FractionImplTest {
 
 
     @Test
-    public void testabs() {
+    public void testAbs() {
             String[][] testmulArray = {
                     {"1", "-1/1"},
                     {"1/4", "1/-4"},
@@ -132,7 +132,7 @@ public class FractionImplTest {
         }
 
             @Test
-    public void testnegate() {
+    public void testNegate() {
                 String[][] testmulArray = {
                         {"1", "-1/1"},
                         {"-1/4", "1/4"},
@@ -179,7 +179,7 @@ public class FractionImplTest {
 
 
     @Test
-    public void testinverse() {
+    public void testInverse() {
             String[][] testinvArray = {
                     {"1", "1/1"},
                     {"1/4", "4"},
@@ -195,7 +195,7 @@ public class FractionImplTest {
     }
 
     @Test
-    public void testcompareTo() {
+    public void testCompareTo() {
 
             Assert.assertEquals(-1, (new FractionImpl("1/2")).compareTo(new FractionImpl(1)));
             Assert.assertEquals(0, (new FractionImpl("10/6")).compareTo(new FractionImpl("5/3")));
@@ -214,6 +214,6 @@ public class FractionImplTest {
     }
 
     @Test
-    public void testmain() {
+    public void testMain() {
     }
 }
