@@ -95,11 +95,39 @@ public class FractionImplTest {
 
     @Test
     public void abs() {
-    }
+            String[][] testmulArray = {
+                    {"1", "-1/1"},
+                    {"1/4", "1/-4"},
+                    {"2", "-2/1"},
+                    {"1/2", "-1/2"},
+                    {"111/1", "-111/1" },
 
-    @Test
+
+            };
+            for (String[] test : testmulArray) {
+                Assert.assertEquals(new FractionImpl(test[0]), new FractionImpl(test[1]).abs());
+            }
+            System.out.println("All 5 test passed");
+
+        }
+
+            @Test
     public void negate() {
-    }
+                String[][] testmulArray = {
+                        {"1", "1/1"},
+                        {"1/4", "1/4"},
+                        {"2", "2/1"},
+                        {"1/2", "1/2"},
+                        {"111/1", "-111/1" },
+
+
+                };
+                for (String[] test : testmulArray) {
+                    Assert.assertEquals(new FractionImpl(test[0]), new FractionImpl(test[1]).abs());
+                }
+                System.out.println("All 5 test passed");
+
+            }
 
     @Test
     public void testHashCode() {
