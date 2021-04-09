@@ -1,4 +1,4 @@
-# Coursework Two - Full-time
+# Coursework POPII
 
 Java provides several types of numbers, but it does not provide fractions. Your task is to implement a 
 `Fraction` API (**A**pplication **P**rogrammer's **I**nterface) and write a small program that uses it.
