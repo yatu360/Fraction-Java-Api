@@ -32,13 +32,34 @@ public class FractionImplTest {
         FractionImpl test1= new FractionImpl(1, 0);
     }
 
+    @Test
+    public void testValidFractions(){
+        Assert.assertEquals(new FractionImpl("1/1"), new FractionImpl(1));
+        Assert.assertEquals(new FractionImpl("-3/4"), new FractionImpl(-3, 4));
+        Assert.assertEquals(new FractionImpl("2/9"), new FractionImpl(2, 9));
+        Assert.assertEquals(new FractionImpl("8/1"), new FractionImpl(8, 1));
+        Assert.assertEquals(new FractionImpl("4"), new FractionImpl(4));
+        Assert.assertEquals(new FractionImpl("9/-26"), new FractionImpl(9, -26));
+        Assert.assertEquals(new FractionImpl("-1"), new FractionImpl(-1));
+        Assert.assertEquals(new FractionImpl("0"), new FractionImpl(0));
+        Assert.assertEquals(new FractionImpl("42"), new FractionImpl(42));
+        Assert.assertEquals(new FractionImpl("1024/2048"), new FractionImpl(1024, 2048));
+        System.out.println("All 10 tests passed");
+    }
 
-
-
+    @Test
+    public void testFractionsValidator(){
+        Assert.assertEquals(new FractionImpl("1/2"), new FractionImpl(2, 4));
+        Assert.assertEquals(new FractionImpl("-5/8"), new FractionImpl(15, -24));
+        Assert.assertEquals(new FractionImpl("1/10"), new FractionImpl(10, 100));
+        Assert.assertEquals(new FractionImpl("-1/3"), new FractionImpl(-3, 9));
+        Assert.assertEquals(new FractionImpl("1/4"), new FractionImpl(5, 20));
+        System.out.println("All 5 tests passed");
+    }
 
     @Test
     public void testAdd() {
-        String[][] testaddArray  = {{"2/1", "1/1", "1/1"},
+        String[][] testAddArray  = {{"2/1", "1/1", "1/1"},
                                     {"1/2", "1/4", "1/4"},
                                     {"79/180", "11/20", "9/-81"},
                                     {"-1/4", "-50/75", "5/12"},
@@ -49,8 +70,8 @@ public class FractionImplTest {
                                     {"0", "0", "0"},
                                     {"7/25", "8/25", "-1/25"}
         };
-        for (String[] testadd: testaddArray) {
-            Assert.assertEquals(new FractionImpl(testadd[0]), new FractionImpl(testadd[1]).add(new FractionImpl(testadd[2])));
+        for (String[] test: testAddArray) {
+            Assert.assertEquals(new FractionImpl(test[0]), new FractionImpl(test[1]).add(new FractionImpl(test[2])));
         }
         System.out.println("All 10 test passed");
     }
@@ -100,9 +121,6 @@ public class FractionImplTest {
                 {"0", "0/1", "1"},
                 {"6", "-3", "-1/2"},
                 {"2109/5", "111/1", "5/19"},
-
-
-
         };
         for (String[] test: testmulArray) {
             Assert.assertEquals(new FractionImpl(test[0]), new FractionImpl(test[1]).divide(new FractionImpl(test[2])));
@@ -121,8 +139,6 @@ public class FractionImplTest {
                     {"2", "-2/1"},
                     {"1/2", "-1/2"},
                     {"111/1", "-111/1" },
-
-
             };
             for (String[] test : testmulArray) {
                 Assert.assertEquals(new FractionImpl(test[0]), new FractionImpl(test[1]).abs());
@@ -131,7 +147,7 @@ public class FractionImplTest {
 
         }
 
-            @Test
+    @Test
     public void testNegate() {
                 String[][] testmulArray = {
                         {"1", "-1/1"},
@@ -139,8 +155,6 @@ public class FractionImplTest {
                         {"2", "2/-1"},
                         {"-1/2", "1/2"},
                         {"111/1", "-111/1" },
-
-
                 };
                 for (String[] test : testmulArray) {
                     Assert.assertEquals(new FractionImpl(test[0]), new FractionImpl(test[1]).negate());
@@ -213,7 +227,4 @@ public class FractionImplTest {
         System.out.println("All 5 tests passed");
     }
 
-    @Test
-    public void testMain() {
-    }
 }
