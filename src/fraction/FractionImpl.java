@@ -3,8 +3,9 @@
 
 package fraction;
 
-
 import java.util.*;
+
+//POP2 Coursework 2021
 
 public class FractionImpl implements Fraction {
 
