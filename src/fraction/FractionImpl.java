@@ -1,12 +1,24 @@
 package fraction;
 
 
-import java.util.Objects;
+import java.util.*;
 
 public class FractionImpl implements Fraction {
 
-    private int numerator;
-    private int denominator;
+    private int numerator, denominator;
+
+    /**
+     * Note 1: Regex documentation- "^((\s*?)(-?)[0-9]+)\s*?(/(\s*?)(-?)[0-9]+)?(\s*?)?"
+     * \s matches any whitespace character (equivalent to [\r\n\t\f\v ])
+     * *? matches the previous token between zero and unlimited times, as few times as possible, expanding as needed (optional)
+     * - matches the character - literally
+     * ? matches the previous token between zero and one times, as many times as possible, giving back as needed (optional)
+     * + matches the previous token between one and unlimited times, as many times as possible, giving back as needed
+     * 0-9 matches a single character in the range between 0 and 9
+     * + matches the previous token between one and unlimited times, as many times as possible, giving back as needed (not optional)
+     * The second half is optional if and only if the first half is not followed by a /.
+     */
+
 
     /**
      * Parameters are the numerator and the denominator. Normalize the fraction as you create it.
@@ -32,6 +44,8 @@ public class FractionImpl implements Fraction {
      * NumberFormatException. The constructor will throw an ArithmeticException if the denominator is zero.
      */
     public FractionImpl(String fraction)throws ArithmeticException, NumberFormatException {
+        //See Note 1 for regex operation documentation. The reason for using regex and to throw NumberFormatException is to improve speed and
+        // efficiency of the api by throwing NumberFormatException early in the code than to wait till Interger.parseInt throws it.
         if (!(fraction.matches("^((\s*?)(-?)[0-9]+)\s*?(/(\s*?)(-?)[0-9]+)?(\s*?)?")))
                                         throw new NumberFormatException("Malformed fraction! "+ fraction +" is not a valid fraction.");
         int x = fraction.indexOf("/");
@@ -106,7 +120,7 @@ public class FractionImpl implements Fraction {
     }
 
     /**
-     * Calculates the Greatest Common Divisor for two numbers using Euclid's algorithm.  
+     * Calculates the Greatest Common Divisor for two numbers using Euclid's algorithm.
      *
      * @param nume the first number (numerator).
      * @param denom the second number(denominator).
