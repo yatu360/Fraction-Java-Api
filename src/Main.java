@@ -116,6 +116,7 @@ public class Main {
             System.out.println("Please enter values between 1-3 for questions or 0 to exit");
             i = user.nextInt();
         }
+        System.out.println("Thank you for playing the game");
 
 
     }

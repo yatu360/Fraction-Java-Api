@@ -9,6 +9,10 @@ import fraction.FractionImpl;
 
 
 public class FractionImplTest {
+    /**
+     * JUnit4 tests for FractionImpl API
+     */
+
 
     /**
      * Implemented my own assertion because ExpectedException rules are very limited with multiple calls within a

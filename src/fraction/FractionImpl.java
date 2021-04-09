@@ -44,7 +44,7 @@ public class FractionImpl implements Fraction {
      * NumberFormatException. The constructor will throw an ArithmeticException if the denominator is zero.
      */
     public FractionImpl(String fraction)throws ArithmeticException, NumberFormatException {
-        //See Note 1 for regex operation documentation. The reason for using regex and to throw NumberFormatException is to improve speed and
+        //See Note 1 for regex operation documentation. The reason for using regex is to filter the input and throw NumberFormatException where appropriate. This improves speed and
         // efficiency of the api by throwing NumberFormatException early in the code than to wait till Interger.parseInt throws it.
         if (!(fraction.matches("^((\s*?)(-?)[0-9]+)\s*?(/(\s*?)(-?)[0-9]+)?(\s*?)?")))
                                         throw new NumberFormatException("Malformed fraction! "+ fraction +" is not a valid fraction.");
@@ -214,7 +214,7 @@ public class FractionImpl implements Fraction {
      */
     @Override
     public boolean equals(Object obj) {
-        if (obj instanceof FractionImpl) { //Checks if obj is an instance of FractionImpl
+        if (obj instanceof Fraction) { //Checks if obj is an instance of Fraction
             FractionImpl f = (FractionImpl) obj; //casts obj to FractionImpl
             return this.getNumerator() == f.getNumerator() && this.getDenominator() == f.getDenominator();
         }
@@ -223,6 +223,7 @@ public class FractionImpl implements Fraction {
 
     /**
      * @inheritDoc
+     *
      */
     @Override //// For the purposes of this assignment, there was no need to implement the related clone() method.
     protected Object clone() throws CloneNotSupportedException {
@@ -252,7 +253,7 @@ public class FractionImpl implements Fraction {
     @Override
 
     public String toString() {
-        return this.getDenominator() == 1? String.valueOf(this.getNumerator())
+        return this.getDenominator() == 1? String.valueOf(this.getNumerator())  //Checks if denominator is 1, if true then just returns numerator as whole number
                 : this.getNumerator() + "/" + this.getDenominator();
     }
 
