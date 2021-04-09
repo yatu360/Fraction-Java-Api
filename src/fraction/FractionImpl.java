@@ -26,7 +26,7 @@ public class FractionImpl implements Fraction {
      * The constructor will throw an ArithmeticException if the denominator is zero.
      */
     public FractionImpl(int numerator, int denominator)throws ArithmeticException{
-        if (denominator==0)  throw new ArithmeticException("divide by zero!");
+        if (denominator==0)  throw new ArithmeticException("divide by zero!"); //Throws ArithmeticException is denominator is 0.
         fractionValidator(numerator, denominator);
     }
 
@@ -52,15 +52,15 @@ public class FractionImpl implements Fraction {
         String StringNumerator;
         String StringDenominator;
         try{
-            StringNumerator= fraction.substring(0, x).trim();
+            StringNumerator= fraction.substring(0, x).trim();   //Extracts the String from start till /, if no / is present throws StringIndexOutOfBoundsException
             StringDenominator = fraction.substring(x + 1).trim();
-        } catch (StringIndexOutOfBoundsException e){
+        } catch (StringIndexOutOfBoundsException e){ //Catches StringIndexOutOfBoundsException and handles. If caught, denominator is set to 1 and Numerator is the parameter passed to the constructor.
             StringNumerator=fraction;
             StringDenominator="1";
         }
         int a = Integer.parseInt(StringNumerator);
         int b = Integer.parseInt(StringDenominator);
-        if (b == 0) throw new ArithmeticException("divide by zero!");
+        if (b == 0) throw new ArithmeticException("divide by zero!"); //Throws ArithmeticException is denominator is 0.
         fractionValidator(a, b);
 
     }
@@ -135,7 +135,7 @@ public class FractionImpl implements Fraction {
      */
     @Override
     public Fraction add(Fraction f) {
-        FractionImpl thatf = (FractionImpl) f;
+        FractionImpl thatf = (FractionImpl) f; //casts f to FractionImpl
 
 
         // a/b + c/d = (ad + bc) / bd
@@ -149,7 +149,7 @@ public class FractionImpl implements Fraction {
      */
     @Override
     public Fraction subtract(Fraction f) {
-        FractionImpl thatf = (FractionImpl) f;
+        FractionImpl thatf = (FractionImpl) f; //casts f to FractionImpl
 
 
         // a/b - c/d = (ad - bc) / bd
@@ -163,7 +163,7 @@ public class FractionImpl implements Fraction {
      */
     @Override
     public Fraction multiply(Fraction f) {
-        FractionImpl thatf = (FractionImpl) f;
+        FractionImpl thatf = (FractionImpl) f; //casts f to FractionImpl
 
 
         // (a/b) * (c/d) = (a*c)/(b*d)
@@ -177,7 +177,7 @@ public class FractionImpl implements Fraction {
      */
     @Override
     public Fraction divide(Fraction f) {
-        FractionImpl thatf = (FractionImpl) f;
+        FractionImpl thatf = (FractionImpl) f; //casts f to FractionImpl
 
 
         // (a/b) / (c/d) = (a*d)/(b*c)
@@ -188,7 +188,7 @@ public class FractionImpl implements Fraction {
     /**
      * @inheritDoc
      */
-    @Override
+    @Override               //returns absolute value
     public Fraction abs() {
         return new FractionImpl(Math.abs(this.getNumerator()), Math.abs(this.getDenominator()));
     }
@@ -196,7 +196,7 @@ public class FractionImpl implements Fraction {
     /**
      * @inheritDoc
      */
-    @Override
+    @Override                   //+a -> -a or -a -> +a
     public Fraction negate() {
         return new FractionImpl(this.getNumerator()*-1, this.getDenominator());
     }
@@ -204,7 +204,7 @@ public class FractionImpl implements Fraction {
     /**
      * @inheritDoc
      */
-    @Override
+    @Override // For the purposes of this assignment, there was no need to implement the related hashCode() method.
     public int hashCode() { //IntelliJ generated hashCode method
         return Objects.hash(this.getNumerator(), this.getDenominator());
     }
@@ -214,8 +214,8 @@ public class FractionImpl implements Fraction {
      */
     @Override
     public boolean equals(Object obj) {
-        if (obj instanceof FractionImpl) {
-            FractionImpl f = (FractionImpl) obj;
+        if (obj instanceof FractionImpl) { //Checks if obj is an instance of FractionImpl
+            FractionImpl f = (FractionImpl) obj; //casts obj to FractionImpl
             return this.getNumerator() == f.getNumerator() && this.getDenominator() == f.getDenominator();
         }
         return false;
@@ -224,7 +224,7 @@ public class FractionImpl implements Fraction {
     /**
      * @inheritDoc
      */
-    @Override
+    @Override //// For the purposes of this assignment, there was no need to implement the related clone() method.
     protected Object clone() throws CloneNotSupportedException {
         return super.clone();
     }
@@ -232,7 +232,7 @@ public class FractionImpl implements Fraction {
     /**
      * @inheritDoc
      */
-    @Override
+    @Override   // a/b = b/a
     public Fraction inverse() {
         return new FractionImpl(this.getDenominator(), this.getNumerator());
     }
@@ -242,7 +242,7 @@ public class FractionImpl implements Fraction {
      */
     @Override
     public int compareTo(Fraction o) {
-        FractionImpl thato = (FractionImpl) o;
+        FractionImpl thato = (FractionImpl) o; //casts o to FractionImpl
         return ((this.getNumerator()* thato.getDenominator())-(thato.getNumerator()*this.getDenominator()));
     }
 
