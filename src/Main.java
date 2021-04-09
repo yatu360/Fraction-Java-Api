@@ -5,8 +5,13 @@ import fraction.FractionImpl;
 
 public class Main {
 
+    /**
+     * A simple text based interactive game that utilising the fraction API. User can select from an option of 3 questions.
+     */
 
-
+    /**
+     * Question 1
+     */
     public static void questionOne(){
         Random rand = new Random();
         int n = rand.nextInt(10);
@@ -31,7 +36,9 @@ public class Main {
         }
     }
 
-
+    /**
+     * Question 2
+     */
     public static void questionTwo(){
         Random rand = new Random();
         int m = rand.nextInt(25);
@@ -59,7 +66,9 @@ public class Main {
         }
     }
 
-
+    /**
+     * Question 3
+     */
     public static void questionThree(){
         Random rand = new Random();
         int m = rand.nextInt(25);

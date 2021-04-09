@@ -10,14 +10,18 @@ import fraction.FractionImpl;
 
 public class FractionImplTest {
 
-
+    /**
+     * Implemented my own assertion because ExpectedException rules are very limited with multiple calls within a
+     * single test.
+     * This test demonstrates the capability of the api to throw NumberFormatException in an event of a malformed fraction.
+     */
     @Test
     public void testMalformedFractions() throws NumberFormatException {
         String [] invalidFractions = {"- 3/ 4", "2/", "/1", "4 4", "-3 4", "4 5/6 7", "1-2", "££", "1.04", "4/(3)"};
         int i = 0;
         while (i<10) {
             try {
-                FractionImpl test0 = new FractionImpl(invalidFractions[i]);
+                new FractionImpl(invalidFractions[i]);
                 Assert.fail("Test failed, not a malformed fractions");
             } catch (NumberFormatException e) {
                 i++;
@@ -26,12 +30,18 @@ public class FractionImplTest {
         System.out.println("All 10 tests passed");
     }
 
-
+    /**
+     * Test for divide by 0 Exception being thrown.
+     */
     @Test(expected = ArithmeticException.class)
     public void testDivideByZero() {
         FractionImpl test1= new FractionImpl(1, 0);
     }
 
+
+    /**
+     * Test to check if the api accepts all valid inputs.
+     */
     @Test
     public void testValidFractions(){
         Assert.assertEquals(new FractionImpl("1/1"), new FractionImpl(1));
@@ -47,6 +57,9 @@ public class FractionImplTest {
         System.out.println("All 10 tests passed");
     }
 
+    /**
+     * Testing helper methods GCD and fractionValidator to see if results are as excepted.
+     */
     @Test
     public void testFractionsValidator(){
         Assert.assertEquals(new FractionImpl("1/2"), new FractionImpl(2, 4));
