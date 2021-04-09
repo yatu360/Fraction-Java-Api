@@ -19,6 +19,7 @@ public class Main {
                             +" pizza(s), but they receive "+n+" pizza(s) instead, how much will each get? (Give your" +
                                 "answer in the lowest form as a/b)");
 
+        System.out.print("Enter Answer: ");
         Scanner user = new Scanner(System.in);
         String userAnswer = user.nextLine();
 
@@ -44,6 +45,8 @@ public class Main {
         System.out.println("Two sisters, Martha & Lisa just got given their pocket money allowance. Martha received "
                 +Martha.toString()+" pound(s) and Lisa received "+Lisa.toString()+" pound(s) ,how much did the sisters received in total?" +
                 " Give your answer in the lowest form with a/b format");
+        System.out.print("Enter Answer: ");
+
 
         Scanner user = new Scanner(System.in);
         String userAnswer = user.nextLine();
@@ -71,6 +74,7 @@ public class Main {
                 "receive "+Marco.toString()+" as a percentage fraction of the estate and Robert is due to receive "+
                 Robert.toString()+" as a percentage fraction of the estate, who is the favourite child? (Marco, Robert or Both)");
 
+        System.out.print("Enter Answer: ");
         Scanner user = new Scanner(System.in);
         String userAnswer = user.nextLine().toLowerCase(Locale.ROOT).trim();
 

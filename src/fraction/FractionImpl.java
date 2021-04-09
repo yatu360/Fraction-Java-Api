@@ -8,19 +8,29 @@ public class FractionImpl implements Fraction {
     private int numerator;
     private int denominator;
 
-
-
+    /**
+     * Parameters are the numerator and the denominator. Normalize the fraction as you create it.
+     * For instance, if the parameters are (8, -12), create a Fraction with numerator -2 and denominator 3.
+     * The constructor will throw an ArithmeticException if the denominator is zero.
+     */
     public FractionImpl(int numerator, int denominator)throws ArithmeticException{
         if (denominator==0)  throw new ArithmeticException("divide by zero!");
         fractionValidator(numerator, denominator);
     }
 
+    /**
+     * The parameter is the numerator and 1 is the implicit denominator.
+     */
     public FractionImpl(int wholeNumber) {
         this.setNumerator(wholeNumber);
         this.setDenominator(1);
     }
 
-
+    /**
+     * The parameter is a String containing either a whole number, such as "5" or "-3", or a fraction, such as "8/-12".
+     * Blanks are allowed around (but not within) integers; thus, "10 /-4" is accepted, but "1 0 / -4" throws a
+     * NumberFormatException. The constructor will throw an ArithmeticException if the denominator is zero.
+     */
     public FractionImpl(String fraction)throws ArithmeticException, NumberFormatException {
         if (!(fraction.matches("^((\s*?)(-?)[0-9]+)\s*?(/(\s*?)(-?)[0-9]+)?(\s*?)?")))
                                         throw new NumberFormatException("Malformed fraction! "+ fraction +" is not a valid fraction.");
@@ -41,23 +51,44 @@ public class FractionImpl implements Fraction {
 
     }
 
-
+    /**
+     * The setter private method for numerator
+     */
     private void setNumerator(int numerator) {
         this.numerator = numerator;
     }
 
+    /**
+     * The setter private method for denominator
+     */
     private void setDenominator(int denominator) {
         this.denominator = denominator;
     }
 
+    /**
+     * The getter private method for numerator
+     */
     private int getNumerator() {
         return this.numerator;
     }
 
+    /**
+     * The getter private method for denominator
+     */
     private int getDenominator() {
         return this.denominator;
     }
 
+    /**
+     * Corrects the sign and reduces the fraction.
+     *
+     * @param numerator the first number (numerator).
+     * @param denominator the second number(denominator).
+     * Corrects sign of fraction, i.e if denominator and numerator is positive, shifts the sign to the numerator.
+     * If numerator is negative and denominator is also negative, ensures that the sign is cancelled off.
+     * Passes to GCD to calculate the Greatest Common Divisor.
+     * Sets the numerator and denominator using the setter methods.
+     */
     private void fractionValidator (int numerator, int denominator){
         int checksign=1;
         if(numerator<0) {
@@ -74,6 +105,13 @@ public class FractionImpl implements Fraction {
         this.setDenominator(denominator/GCD_value);
     }
 
+    /**
+     * Calculates the Greatest Common Divisor for two numbers using Euclid's algorithm.
+     *
+     * @param nume the first number (numerator).
+     * @param denom the second number(denominator).
+     * @return the Greatest Common Divisor.
+     */
     private int GCD(int nume, int denom) {
         return denom==0 ? nume : GCD(denom, nume%denom);
     }
