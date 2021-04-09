@@ -106,7 +106,7 @@ public class FractionImpl implements Fraction {
     }
 
     /**
-     * Calculates the Greatest Common Divisor for two numbers using Euclid's algorithm.
+     * Calculates the Greatest Common Divisor for two numbers using Euclid's algorithm.  
      *
      * @param nume the first number (numerator).
      * @param denom the second number(denominator).
