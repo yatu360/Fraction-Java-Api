@@ -1,4 +1,4 @@
-# Coursework
+# Project
 
 Java provides classes for working with several types of numbers, but it does not provide anything for working with fractions. My task is to implement a Fraction API (**A**pplication **P**rogrammer's **I**nterface). I am also to write a small program that uses it.
 
@@ -6,12 +6,12 @@ Java provides classes for working with several types of numbers, but it does not
 
 The purposes of this assignment include the following:
 
-*   To practice with creating classes.
-*   To practice reading the API.
-*   To practice with string manipulation.
-*   To practice with unit testing.
+*   To demonstrate working with classes.
+*   To demonstrate reading the API.
+*   To demonstrate string manipulation.
+*   To demonstrate unit testing.
 
-## General idea of the assignment
+## General idea of the Project
 
 To implement a Fraction API; in particular, implement a number of methods in the file FractionImpl.java.
 
@@ -260,11 +260,3 @@ Any additional methods (such as helper methods) in my implementation should be f
 
 Inside methods, I should provide comments. In general, these should be high-level comments to aid the reading of my code by someone who is already familiar with Java.
 
-## Grading
-
-My grade will be based on:
-
-*   How correct and complete my class is.
-*   My comments and general programming style.
-
-We will use our own programs and our own unit tests for grading purposes. Therefore, I must adhere to the method names and parameter types shown.
